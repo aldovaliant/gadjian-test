@@ -10,13 +10,13 @@ import { BiCalendar } from 'react-icons/bi';
 export const SidebarData = [
   {
     title: 'Beranda',
-    path: '/',
+    path: '/beranda',
     icon: <FaHome color='black' size="20px" />,
     cName: 'nav-text'
   },
   {
     title: 'Personnel List',
-    path: '/personnellist',
+    path: '/personnel',
     icon: <TiGroup color='black' size="20px" />,
     cName: 'nav-text'
   },

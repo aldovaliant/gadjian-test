@@ -1,0 +1,95 @@
+.div-personnel {
+  color: gray;
+}
+
+h1 {
+  color: #23c7c6;
+}
+
+.div-personnelHeader {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  padding: 0 1rem;
+}
+
+.div-personnelHeader > input {
+  right: 20%;
+  /* position: absolute; */
+  display: flex;
+  width: 10%;
+  height: 4%;
+}
+
+.div-personnelHeader > button {
+  right: 5%;
+  /* position:absolute; */
+  display: flex;
+}
+
+.div-personnelHeader > .div-input {
+  float: right;
+  right: 5%;
+  position: absolute;
+  
+}
+
+#search-input{
+  margin-right: 1rem;
+  height: 0.5rem;
+  width: 80px;
+  border-radius: 0mm;
+}
+
+#btn-add{
+  height: 2.8rem;
+  background-color: #23c7c6;
+  color: white;
+  font-family: 'Muli';
+  font-weight: bold;
+  border: none;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.personnel-list-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.personnel-container {
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  margin: 1rem;
+  width: 270px;
+  padding: 1rem;
+}
+
+.personnel-id {
+  display: inline-flex;
+}
+
+.pid {
+  width: 60%;
+  color: #23c7c6;
+}
+
+.personnel-img {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.personnel-img img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.personnel-name, .personnel-telp, .personnel-birthday, .personnel-email{
+  line-height: 1mm;
+  padding-bottom: 0.1mm;
+}

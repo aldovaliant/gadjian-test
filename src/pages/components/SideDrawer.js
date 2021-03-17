@@ -14,7 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import GadjianLogo from '../assets/gadjian-logo.png';
-// import PersonnelList from '../PersonnelList';
+import PersonnelList from '../PersonnelList';
 import { SidebarData } from './SidebarData';
 import ProfilePicture from '../assets/blank-profile-picture.png';
 
@@ -170,7 +170,7 @@ function ResponsiveDrawer(props) {
             </nav>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                {/* <PersonnelList /> */}
+                <PersonnelList />
             </main>
         </div>
     );
