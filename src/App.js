@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState, useCallback } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import PersonnelList from './pages/PersonnelList';
+// import Dashboard from './pages/Dashboard';
+import SideDrawer from './pages/components/SideDrawer';
+
 
 function App() {
+  const [selectedItem, setSelectedItem] = useState('Personnel List');
+
+  useEffect(() => {
+    window.addEventListener('resize', resize);
+  })
+  const resize = () => forceUpdate();
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <SideDrawer />
+        {/* <Route path='/personnel' component={PersonnelList} />
+        <Route path='/beranda' component={Dashboard} /> */}
+      </Router>
+    </>
   );
 }
 
