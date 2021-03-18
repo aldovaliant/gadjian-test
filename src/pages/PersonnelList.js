@@ -1,30 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import Personnel from './components/Personnel';
 import './PersonnelList.css';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { InputAdornment, TextField, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { fetchPersonnels } from '../actions/actions';
 
 
-const PERSONNEL_API = "https://randomuser.me/api/?results=8";
+function PersonnelList() {
 
-function PersonnelList(params) {
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.loading);
+    const personnelList = useSelector(state => state.personnels);
 
-    const [personnelList, setPersonnelList] = useState([]);
-    const [currentPersonnelList, setCurrentPersonnelList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const getPersonnel = (API) => {
-        fetch(API)
-            .then((res) => res.json())
-            .then((data) => setPersonnelList(data.results));
-        setCurrentPersonnelList(personnelList.slice(0,4));
-    }
+    const personnelsPerPage = 4;
+
+    const previousRef = useRef(null);
+    const nextRef = useRef(null);
+    const indexOfLastItem = currentPage * personnelsPerPage;
+    const indexOfFirstItem = indexOfLastItem - personnelsPerPage;
+    const displayPersonnels = personnelList.slice(indexOfFirstItem, indexOfLastItem)
+        .map((personnel, index) => <Personnel key={index} {...personnel} />);
 
     useEffect(() => {
-        getPersonnel(PERSONNEL_API);
-    }, [])
+        dispatch(fetchPersonnels());
+        // if(currentPage === 1){
+        //     previousRef.current.disabled = true;
+        // }
+    }, [dispatch])
 
-    return (
+    const pageCount = Math.ceil(personnelList.length / personnelsPerPage);
+
+    const handlePrevious = (e) => {
+        if (currentPage - 1 >= 1) {
+            nextRef.current.disabled = false;
+            setCurrentPage(currentPage - 1);
+        } else {
+            e.target.disabled = true;
+        }
+    }
+    const handleNext = (e) => {
+        if (currentPage < pageCount) {
+            previousRef.current.disabled = false;
+            setCurrentPage(currentPage + 1);
+            if (currentPage === pageCount) {
+                e.target.disabled = true;
+            }
+        } else {
+            e.target.disabled = true;
+        }
+    }
+
+    return loading ? <h1 id="loading">Loading...</h1> : (
         <div className="div-personnel">
             <div className="div-personnelHeader">
                 <div className="div-title">
@@ -48,15 +78,21 @@ function PersonnelList(params) {
                 </div>
             </div>
             <div className="personnel-list-container">
-                {currentPersonnelList.length > 0 &&
-                    currentPersonnelList.map((personnel, index) => <Personnel key={index} {...personnel} />)}
+                {personnelList.length > 0 && displayPersonnels}
             </div>
             <div>
-                <button>Previous</button>
-                <button>Next</button>
+                <div className="div-pagination">
+                    <button id="previous-btn" onClick={handlePrevious} ref={previousRef}>
+                        <FaChevronLeft size="20px" /> Previous Page
+                    </button>
+                    <button id="next-btn" onClick={handleNext} ref={nextRef} >
+                        Next Page<FaChevronRight size="20px" />
+                    </button>
+                </div>
             </div>
         </div>
     );
 }
+
 
 export default PersonnelList

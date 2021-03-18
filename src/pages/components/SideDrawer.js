@@ -58,8 +58,6 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     divTitle: {
-        // alignItems: 'center',
-        // justifyContent: 'center',
         display: 'flex',
         float: 'right',
         right: '0',

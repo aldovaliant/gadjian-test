@@ -93,3 +93,35 @@ h1 {
   line-height: 1mm;
   padding-bottom: 0.1mm;
 }
+
+.div-pagination {
+  /* width: 100%; */
+  height: 50px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+#previous-btn, #next-btn {
+  display: flex;
+  align-items: center;
+  font-family: 'Muli';
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  margin: 0 15px;
+}
+
+.paginationBtn a {
+  padding: 10px;
+  margin: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+#loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
