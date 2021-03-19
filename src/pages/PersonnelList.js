@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import Personnel from './components/Personnel';
 import './PersonnelList.css';
 import { FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -8,12 +8,12 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fetchPersonnels } from '../actions/actions';
 
 
-function PersonnelList() {
+function PersonnelList(props) {
 
     const dispatch = useDispatch();
     const loading = useSelector(state => state.loading);
+    // const personnelList = props.personnels;
     const personnelList = useSelector(state => state.personnels);
-
     const [currentPage, setCurrentPage] = useState(1);
 
     const personnelsPerPage = 4;
@@ -25,11 +25,18 @@ function PersonnelList() {
     const displayPersonnels = personnelList.slice(indexOfFirstItem, indexOfLastItem)
         .map((personnel, index) => <Personnel key={index} {...personnel} />);
 
+    // const [searchTerm, setSearchTerm] = useState("");
+    // const handleChange = event => {
+    //     setSearchTerm(event.target.value);
+    // };
+
     useEffect(() => {
         dispatch(fetchPersonnels());
-        // if(currentPage === 1){
-        //     previousRef.current.disabled = true;
-        // }
+
+        // Filter untuk searching dari input, hasilnya baru bisa ditampilkan dalam console
+        // const results = personnelList.filter(personnel =>
+        //     personnel.name.first.toLowerCase().includes(searchTerm)
+        // );
     }, [dispatch])
 
     const pageCount = Math.ceil(personnelList.length / personnelsPerPage);
@@ -58,11 +65,10 @@ function PersonnelList() {
         <div className="div-personnel">
             <div className="div-personnelHeader">
                 <div className="div-title">
-                    <h1>Personnel List</h1>
+                    <h1>PERSONNEL LIST</h1>
                     <h3>List of all personnels</h3>
                 </div>
                 <div className="div-input">
-                    {/* <input type="text" id="search-input" placeholder="Find Personnels"></input> */}
                     <TextField id="search-input" label="Find Personnels" type="search" variant="outlined"
                         InputProps={{
                             startAdornment: (
@@ -73,7 +79,10 @@ function PersonnelList() {
                                 </InputAdornment>
                             )
                         }}
+                        // onChange={handleChange}
                     />
+                </div>
+                <div className="div-btn">
                     <button id="btn-add">ADD PERSONNEL <FaPlus /> </button>
                 </div>
             </div>
