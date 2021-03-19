@@ -75,8 +75,14 @@ h1 {
   overflow: hidden;
   position: relative;
   margin: 1rem;
-  width: 200px;
+  width: 14vw;
   padding: 1rem;
+}
+
+@media screen and (max-width: 768px){
+  .personnel-container{
+    width: 200px;
+  }
 }
 
 .personnel-id {
@@ -84,7 +90,7 @@ h1 {
 }
 
 .pid {
-  width: 60%;
+  width: 50%;
   color: #23c7c6;
 }
 

@@ -13,7 +13,7 @@ function Personnel(props) {
     return (
         <div className="personnel-container">
             <div className="personnel-id">
-                <h3>Personnel ID: </h3>
+                <h4>Personnel ID: </h4>
                 <p className="pid">{props.login.uuid}</p>
                 <BsThreeDots size="30px" style={{cursor: 'pointer'}} />
             </div>
