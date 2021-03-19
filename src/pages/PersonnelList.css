@@ -75,7 +75,7 @@ h1 {
   overflow: hidden;
   position: relative;
   margin: 1rem;
-  width: 220px;
+  width: 200px;
   padding: 1rem;
 }
 
@@ -112,6 +112,7 @@ h1 {
   list-style: none;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 #previous-btn,

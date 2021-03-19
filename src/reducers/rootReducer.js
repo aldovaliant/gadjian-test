@@ -1,9 +1,11 @@
+// state global
 const globalState = {
     personnels: [],
     loading: false,
     error: null
 };
 
+// reducers
 const rootReducer = (state = globalState, action) => {
     if (action.type === 'FETCH_PERSONNELS_REQUEST') {
         return {

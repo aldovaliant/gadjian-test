@@ -3,6 +3,7 @@ import { BsThreeDots } from 'react-icons/bs';
 
 function Personnel(props) {
 
+    // fungsi untuk mendapatkan tanggal sesuai format DD-MM
     const setBirthdayFormat = date => {
         const DD = date.substring(8, 10);
         const MM = date.substring(5, 7);

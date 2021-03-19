@@ -6,6 +6,7 @@ import { FaBars, FaHome } from 'react-icons/fa';
 import { BiCalendar } from 'react-icons/bi';
 import { TiGroup } from 'react-icons/ti';
 
+// CSS
 const styles = StyleSheet.create({
     burgerIcon: {
         cursor: 'pointer',
@@ -74,17 +75,21 @@ const styles = StyleSheet.create({
 
 class SidebarComponent extends React.Component {
 
+    // state penanda sidebar sedang dibuka atau tidak (saat mobile view)
     state = { expanded: false };
 
+    // fungsi untuk mengubah menu yang dipilih
     onItemClicked = (item) => {
         this.setState({ expanded: false });
         return this.props.onChange(item);
     }
 
+    // penanda apakah layar mobile atau bukan
     isMobile = () => window.innerWidth <= 768;
 
     toggleMenu = () => this.setState(prevState => ({ expanded: !prevState.expanded }));
 
+    // render bar/burger menu
     renderBurger = () => {
         return <div onClick={this.toggleMenu} className={css(styles.burgerIcon)}>
             <FaBars />

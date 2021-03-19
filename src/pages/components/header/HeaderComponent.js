@@ -5,6 +5,7 @@ import { StyleSheet, css } from 'aphrodite';
 import GadjianLogo from '../../assets/gadjian-logo.png';
 import UserPhoto from '../../assets/blank-profile-picture.png'
 
+// CSS
 const styles = StyleSheet.create({
     avatar: {
         height: 35,

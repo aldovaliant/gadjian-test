@@ -3,6 +3,7 @@ import { bool, func, string } from 'prop-types';
 import { Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 
+// CSS
 const styles = StyleSheet.create({
     activeBar: {
         height: 56,

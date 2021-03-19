@@ -8,7 +8,7 @@ import { StyleSheet, css } from 'aphrodite';
 import Dashboard from './pages/Dashboard';
 import DailyAttendance from './pages/DailyAttendance';
 
-
+// CSS
 const styles = StyleSheet.create({
   container: {
     height: '100%',
@@ -36,8 +36,10 @@ const styles = StyleSheet.create({
 });
 
 function App() {
+  // state yang menunjukkan menu yang sedang dipilih
   const [selectedItem, setSelectedItem] = useState('PersonnelList');
 
+  // update jika window di resize
   const resize = () => forceUpdate();
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), [])
@@ -48,14 +50,21 @@ function App() {
 
   return (
     <Row className={css(styles.container)}>
+
+      {/* Sidebar */}
       <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => setSelectedItem(selectedItem)} />
       <Column flexGrow={1} className={css(styles.mainBlock)}>
+
+        {/* Header */}
         <HeaderComponent title={selectedItem} />
+
+        {/* Content */}
         <div className={css(styles.content)} breakpoints={{ 768: css(styles.contentMobile) }}>
           {selectedItem === "Dashboard" ?
             <Dashboard /> :
             selectedItem === "DailyAttendance" ? <DailyAttendance /> : <PersonnelList />}
         </div>
+
       </Column>
     </Row>
   );

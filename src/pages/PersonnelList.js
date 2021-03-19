@@ -8,23 +8,34 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fetchPersonnels } from '../actions/actions';
 
 
-function PersonnelList(props) {
+function PersonnelList() {
 
+    // untuk dispatch action
     const dispatch = useDispatch();
+
+    // mendapatkan global state loading
     const loading = useSelector(state => state.loading);
-    // const personnelList = props.personnels;
+
+    // mendapatkan global state list personnel
     const personnelList = useSelector(state => state.personnels);
+
+    // state halaman yang sedang dibuka
     const [currentPage, setCurrentPage] = useState(1);
 
+    // jumlah personnel per halaman
     const personnelsPerPage = 4;
 
-    const previousRef = useRef(null);
-    const nextRef = useRef(null);
+    // untuk mendapatkan 4 personnel berdasarkan halaman yang sedang dibuka
     const indexOfLastItem = currentPage * personnelsPerPage;
     const indexOfFirstItem = indexOfLastItem - personnelsPerPage;
     const displayPersonnels = personnelList.slice(indexOfFirstItem, indexOfLastItem)
-        .map((personnel, index) => <Personnel key={index} {...personnel} />);
+    .map((personnel, index) => <Personnel key={index} {...personnel} />);
+    
+    // untuk mendapatkan ref dari tombol previous dan next
+    const previousRef = useRef(null);
+    const nextRef = useRef(null);
 
+    // state untuk mendapatkan input search
     // const [searchTerm, setSearchTerm] = useState("");
     // const handleChange = event => {
     //     setSearchTerm(event.target.value);
@@ -39,8 +50,10 @@ function PersonnelList(props) {
         // );
     }, [dispatch])
 
+    // mendapatkan jumlah halaman
     const pageCount = Math.ceil(personnelList.length / personnelsPerPage);
 
+    // fungsi saat tombol previous ditekan
     const handlePrevious = (e) => {
         if (currentPage - 1 >= 1) {
             nextRef.current.disabled = false;
@@ -49,6 +62,7 @@ function PersonnelList(props) {
             e.target.disabled = true;
         }
     }
+    // fungsi saat tombol next ditekan
     const handleNext = (e) => {
         if (currentPage < pageCount) {
             previousRef.current.disabled = false;
